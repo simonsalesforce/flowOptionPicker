@@ -1,0 +1,82 @@
+<template>
+    <!-- Special mode section -->
+    <template if:true={specialOption}>
+        <div class="special-section">
+            <div
+                class={specialOption.cssClass}
+                data-key={specialOption.key}
+                onclick={handleSelect}
+            >
+                <div class="content special-content">
+                    <template if:true={specialOption.selected}>
+                        <div class="special-prefix">SHOWING</div>
+                    </template>
+                    <template if:false={specialOption.selected}>
+                        <div class="special-prefix">RESET</div>
+                    </template>
+
+                    <div class="label special-label">
+                        {specialOption.label}
+                    </div>
+
+                    <template if:true={specialOption.description}>
+                        <div class="description special-description">
+                            {specialOption.description}
+                        </div>
+                    </template>
+                </div>
+
+                <template if:true={specialOption.selected}>
+                    <div class="selected-badge">
+                        <lightning-icon
+                            icon-name="utility:check"
+                            size="x-small"
+                            alternative-text="Selected">
+                        </lightning-icon>
+                    </div>
+                </template>
+            </div>
+
+            <div class="section-divider"></div>
+        </div>
+    </template>
+
+    <!-- Grid -->
+    <div class={containerClass} style={containerStyle}>
+        <template for:each={options} for:item="option">
+            <div
+                key={option.key}
+                class={option.cssClass}
+                data-key={option.key}
+                onclick={handleSelect}
+            >
+                <div class="selected-badge">
+                    <lightning-icon
+                        icon-name="utility:check"
+                        size="x-small"
+                        alternative-text="Selected">
+                    </lightning-icon>
+                </div>
+
+                <template if:true={option.iconName}>
+                    <div class="icon">
+                        <lightning-icon
+                            icon-name={option.iconName}
+                            size="small">
+                        </lightning-icon>
+                    </div>
+                </template>
+
+                <div class="content">
+                    <div class="label">{option.label}</div>
+
+                    <template if:true={option.description}>
+                        <div class="description">
+                            {option.description}
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

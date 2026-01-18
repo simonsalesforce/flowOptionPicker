@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <isExposed>true</isExposed>
+
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+
+            <!-- Required inputs -->
+
+            <property
+                name="labels"
+                type="String[]"
+                label="Labels"
+                description="The main text shown for each option. One entry per option. These are the primary titles users will click on."
+                required="true"
+            />
+
+            <property
+                name="descriptions"
+                type="String[]"
+                label="Descriptions"
+                description="Optional. Supporting text shown under each label. Can be omitted entirely, or partially filled. If provided, entries should align by position with Labels."
+            />
+
+            <property
+            name="iconNames"
+            type="String[]"
+            label="Icon Names"
+            description="Optional. Salesforce Lightning icon names (for example: standard:apps or utility:filter). If omitted, options render without icons. If provided, entries should align by position with Labels."
+        />
+        
+
+            <property
+                name="keys"
+                type="String[]"
+                label="Keys"
+                description="Stable values returned to the Flow when an option is selected. One per option, aligned by position with Labels. Use these values in Flow decisions, visibility rules, or downstream logic."
+                required="true"
+            />
+
+            <!-- Behaviour configuration -->
+
+            <property
+                name="defaultSelectedKey"
+                type="String"
+                label="Default Selected Key"
+                description="The key that should be selected automatically when the screen first loads. Must match one of the provided Keys. This does not have to be the Special Key."
+            />
+
+            <property
+                name="specialKey"
+                type="String"
+                label="Special Key (Mode Option)"
+                description="Optional. Identifies one key that represents a special 'mode' option (for example: 'All videos' or 'No filter'). This option is rendered separately above the grid with distinct styling and behaviour."
+            />
+
+            <!-- Layout & appearance -->
+
+            <property
+                name="minCardWidth"
+                type="Integer"
+                label="Minimum Card Width (px)"
+                description="Controls the responsive layout of the option grid. Cards will not shrink below this width, and the grid will automatically adjust the number of columns to fit the available space. Default is 260px."
+            />
+
+            <property
+                name="density"
+                type="String"
+                label="Visual Density"
+                description="Controls spacing inside each option. Use 'comfortable' for decision screens or 'compact' for filter-style pickers where vertical space is limited. Defaults to 'comfortable'."
+            />
+
+            <!-- Output -->
+
+            <property
+                name="selectedKey"
+                type="String"
+                label="Selected Key"
+                description="Output only. The key corresponding to the currently selected option. This value updates immediately when the user clicks an option and can be used by other components or logic on the same Flow screen."
+                role="outputOnly"
+            />
+
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
